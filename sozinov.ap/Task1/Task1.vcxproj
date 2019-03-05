@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Time.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="TimeTest.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="Vector3DTest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{70037372-60DC-4ECF-8244-B65F2FA49A14}</ProjectGuid>
