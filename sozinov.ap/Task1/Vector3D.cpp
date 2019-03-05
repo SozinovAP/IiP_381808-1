@@ -89,20 +89,16 @@ Vector3D Vector3D::operator-(const Vector3D& V)
 //peregryzka "*" 2 vectorov
 double Vector3D::operator*(const Vector3D& V)
 {
-	Vector3D tmp;
-	tmp.x = x * V.x;
-	tmp.y = y * V.y;
-	tmp.z = z * V.z;
-	return tmp.x + tmp.y + tmp.z;
+	return x * V.x + y * V.y + z*V.z;
 }
 //peregryzka "*" na scalyar
-double Vector3D::operator*(double scalyar)
+Vector3D Vector3D::operator*(const double& scalyar)
 {
 	Vector3D tmp;
 	tmp.x = x * scalyar;
 	tmp.y = y * scalyar;
 	tmp.z = z * scalyar;
-	return tmp.x + tmp.y + tmp.z;
+	return tmp;
 }
 //peregryzka sravnenii
 bool Vector3D::operator==(const Vector3D& V)
@@ -138,9 +134,7 @@ ostream& operator<< (ostream& stream, const Vector3D& V)
 }
 istream& operator>> (istream& stream, Vector3D& V)
 {
-	stream >> V.x;
-	stream >> V.y;
-	stream >> V.z;
+	stream  >> V.x >> V.y >> V.z;
 	return stream;
 }
 

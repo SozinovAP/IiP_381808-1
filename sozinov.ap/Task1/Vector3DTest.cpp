@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-	Vector3D vec1, vec2, vec3;
+	Vector3D vec1, vec2, vec3, vec4 = Vector3D(4.2, 5.6, 1.3), vec5;
 	cout << "Vvedite koordinati 1 vectora: ";
 	cin >> vec1;
 	cout << "Vvedite koordinati 2 vectora: ";
@@ -32,4 +32,15 @@ int main()
 			cout << "vector2 bolshe vectora1";
 		}
 	}
+	cout << endl << endl;
+
+	cout << "Proverka vyvoda" << endl;
+	cout << "Ozhidaemyi rezyltat: X = 4.2, Y = 5.6, Z = 1.3" << endl;
+	cout << "Itog: " << vec4 << endl << endl;
+	
+	cout << "Proverka vvoda" << endl;
+	cout << "Ozhidaemyi rezyltat: " << "X = 1.2, Y = 3.4, Z = 5.6" << endl;
+	cout << "Vvedyte koordinaty iz ozhidaemogo rezyltata" << endl;
+	cin >> vec5;
+	cout << "Itog: " << vec5;
 }

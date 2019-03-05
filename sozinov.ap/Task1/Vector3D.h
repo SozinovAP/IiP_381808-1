@@ -21,7 +21,7 @@ public:
 	void set_Z(double Z);
 	//vichislenie dlini vectora;
 	double LenVec()
-		const 
+		const
 	{ 
 		return sqrt(x*x + y*y + z*z); 
 	} 
@@ -38,7 +38,7 @@ public:
 	//peregryzka "*" 2 vectorov
 	double operator*(const Vector3D& V);
 	//peregryzka "*" na skalyar
-	double operator*(double scalyar);
+	Vector3D operator*(const double& scalyar);
 	//peregryzka sravnenii
 	bool operator==(const Vector3D& V);
 	bool operator!=(const Vector3D& V);
