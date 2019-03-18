@@ -1,45 +1,43 @@
-#pragma once
+Ôªø#pragma once
 #include <string>
 #include <iostream>
 #include <fstream>
 
-/*—ÓÁ‰‡Ú¸ ÍÎ‡ÒÒ Octal ‰Îˇ ‡·ÓÚ˚ Ò ·ÂÁÁÌ‡ÍÓ‚˚ÏË ˆÂÎ˚ÏË ‚ÓÒ¸ÏÂË˜Ì˚ÏË ˜ËÒÎ‡ÏË, ËÒÔÓÎ¸ÁÛˇ ‰Îˇ ÔÂ‰ÒÚ‡‚ÎÂÌËˇ ˜ËÒÎ‡ Ï‡ÒÒË‚ 
-˝ÎÂÏÂÌÚÓ‚ ÚËÔ‡ unsigned char, Í‡Ê‰˚È ˝ÎÂÏÂÌÚ ÍÓÚÓÓ„Ó ˇ‚ÎˇÂÚÒˇ ‚ÓÒ¸ÏÂË˜ÌÓÈ ˆËÙÓÈ. ÃÎ‡‰¯‡ˇ ˆËÙ‡ ËÏÂÂÚ ÏÂÌ¸¯ËÈ ËÌ‰ÂÍÒ 
-(Â‰ËÌËˆ˚ ó ‚ ÌÛÎÂ‚ÓÏ ˝ÎÂÏÂÌÚÂ Ï‡ÒÒË‚‡). –‡ÁÏÂ Ï‡ÒÒË‚‡ Á‡‰‡ÂÚÒˇ Í‡Í ‡„ÛÏÂÌÚ ÍÓÌÒÚÛÍÚÓ‡.*/
+
 using namespace std;
 class Octal
 {
 public:
-	Octal();//konstryctor po ymolchaniy
-	Octal(int Len);//konstryctor initializacii
-	Octal(string ST);//konstryctor preobrazovanya tipa
-	Octal(const Octal& _Octal);//konstryctor kopirovaniya
-	~Octal();//destryctor
-	void MaxIMinLength(int Len1, int Len2);//polychenie max i min dliny chisla
-	int Leng(string ST);//dlina chisla
-	void ToZero();//obnylenye massiva
-	void Del0(Octal& TMP);//ydalenye neznacyashix '0'
-	//peregryzki
+	Octal();//–∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –ø–æ —É–º–æ–ª—á–∞–Ω–∏—é
+	Octal(int Len);//–∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –∏–Ω–∏—Ü–∏–∞–ª–∏–∑–∞—Ü–∏–∏
+	Octal(string ST);//–∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –ø—Ä–µ–æ–±—Ä–∞–∑–æ–≤–∞–Ω–∏—è —Ç–∏–ø–∞
+	Octal(const Octal& _Octal);//–∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –∫–æ–ø–∏—Ä–æ–≤–∞–Ω–∏—è
+	~Octal();//–¥–µ—Å—Ç—Ä—É–∫—Ç–æ—Ä
+	int Leng(string ST);//–¥–ª–∏–Ω–∞ —á–∏—Å–ª–∞
+	void ToZero();//–æ–±–Ω—É–ª–µ–Ω–∏–µ –º–∞—Å—Å–∏–≤–∞
+	void MaxIMinLength(int Len1, int Len2);//–æ–ø—Ä–µ–¥–µ–ª–µ–Ω–∏–µ –º–∞–∫—Å–∏–º–∞–ª—å–Ω–æ–π –∏ –º–∏–Ω–∏–º–∞–ª—å–Ω–æ–π –¥–ª–∏–Ω—ã –∏–∑ 2 —á–∏—Å–µ–ª
+	void Del0(Octal& TMP);//—É–¥–∞–ª–µ–Ω–∏–µ –Ω–µ–∑–Ω–∞—á–∞—â–∏—Ö '0'
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∏
 
-	//peregryzka "="
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ "="
 	Octal& operator=(const Octal& _Octal);
-	//peregryzka "+"
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ "+"
 	Octal operator+(const Octal& _Octal);
-	//peregryzka "-"
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ "-"
 	Octal operator-(const Octal& _Octal);
-	//peregryzka "*"
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ "*"
 	Octal operator*(const Octal& _OCtal);
-	//peregryzka sravnenii
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ —Å—Ä–∞–≤–Ω–µ–Ω–∏–π
 	bool operator==(const Octal& _Octal);
 	bool operator>(const Octal& _Octal);
 	bool operator<(const Octal& _Octal);
-	//peregryzka COUT
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ COUT
 	friend ostream& operator<<(ostream& stream, const Octal& _Octal);
-	//peregryzka CIN
+	//–ø–µ—Ä–µ–≥—Ä—É–∑–∫–∞ CIN
 	friend istream& operator>>(istream& stream, Octal& _Octal);
 
 
-	int max, min;//max i min dliny chisel. Ispol`zyetcya v '+', '-', '*'
+	int max, min;//–∑–Ω–∞—á–µ–Ω–∏–µ –º–∞–∫—Å–∏–º–∞–ª—å–Ω–æ–π –∏ –º–∏–Ω–∏–º–∞–ª—å–Ω–æ–π –¥–ª–∏–Ω —á–∏—Å–µ–ª(–≤ –æ–ø–µ—Ä–∞—Ü–∏—è—Ö '+' –∏ '-')
 private:
 	unsigned char *mass;
 	int length;

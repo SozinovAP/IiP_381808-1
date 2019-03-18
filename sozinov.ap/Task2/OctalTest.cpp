@@ -12,11 +12,11 @@ void main()
 	cin >> c1;
 	cout << "vvod 2 chisla: ";
 	cin >> c2;
-	cout << "1 chislo = " << c1 << endl;
-	cout << "2 chislo = " << c2 << endl;
 	cout << " summa = " << c1 + c2 << endl;
 	cout << "raznost` = " << c1 - c2 << endl;
 	cout << "proizvedenye = " << c1 * c2 << endl;
+	cout << "1 chislo = " << c1 << endl;
+	cout << "2 chislo = " << c2 << endl;
 	if (c1 == c2)
 	{
 		cout << "chisla ravni" << endl;

@@ -6,18 +6,19 @@
 using namespace std;
 
 
-Octal::Octal()//konstryctor po ymolchaniy
+Octal::Octal()//конструктор по умолчанию
 {
 	length = 0;
 	mass = NULL;
 }
+
 Octal::Octal(int Len)//конструктор инициализации
 {
 	length = Len;
 	mass = new unsigned char[length];
 }
 
-Octal::Octal(string ST)//konstryctor preobrazovanya tipa
+Octal::Octal(string ST)//конструктор преобразования типа
 {
 	length = Leng(ST);
 	mass = new unsigned char[length];
@@ -27,7 +28,7 @@ Octal::Octal(string ST)//konstryctor preobrazovanya tipa
 	}
 }
 
-Octal::Octal(const Octal& _Octal)//konstryctor kopirovaniya
+Octal::Octal(const Octal& _Octal)//конструктор копирования
 {
 	length = _Octal.length;
 	mass = new unsigned char[length];
@@ -37,13 +38,13 @@ Octal::Octal(const Octal& _Octal)//konstryctor kopirovaniya
 	}
 }
 
-Octal::~Octal()//destryctor
+Octal::~Octal()//деструктор
 {
 	length = 0;
 	mass = NULL;
 }
 
-int Octal::Leng(string ST)//dlina chisla
+int Octal::Leng(string ST)//длина числа
 {
 	int i = length = 0;
 	while (ST[i])
@@ -54,7 +55,7 @@ int Octal::Leng(string ST)//dlina chisla
 	return length;
 }
 
-void Octal::ToZero()//obnylenye massiva
+void Octal::ToZero()//обнуление массива
 {
 	for (int i = 0; i < length; i++)
 	{
@@ -62,7 +63,7 @@ void Octal::ToZero()//obnylenye massiva
 	}
 }
 
-void Octal::MaxIMinLength(int Len1, int Len2)//polychenie max i min dliny chisla
+void Octal::MaxIMinLength(int Len1, int Len2)//определение максимальной и минимальной длины из 2 чисел
 {
 
 	if (Len1 > Len2)
@@ -84,7 +85,7 @@ void Octal::MaxIMinLength(int Len1, int Len2)//polychenie max i min dliny chisla
 	}
 }
 
-void Octal::Del0(Octal &TMP)//ydalenye neznacyashix '0'
+void Octal::Del0(Octal &TMP)//удаление незначащих '0'
 {
 	int i = TMP.length - 1;
 	int k = 0;
@@ -95,9 +96,9 @@ void Octal::Del0(Octal &TMP)//ydalenye neznacyashix '0'
 	} while (TMP.mass[i] == 0);
 	TMP.length = TMP.length - k;
 }
-//peregryzki
+//перегрузки
 
-//peregryzka "="
+//перегрузка "="
 Octal& Octal::operator=(const Octal& _Octal)
 {
 
@@ -116,12 +117,13 @@ Octal& Octal::operator=(const Octal& _Octal)
 	}
 	return *this;
 }
-//peregryzka "+"
+//перегрузка "+"
 Octal Octal::operator+(const Octal& _Octal)
 {
 	MaxIMinLength(length, _Octal.length);
-	Octal Sum(max);
-	int tmp = 0;
+	Octal Sum(max + 1);//+1 необходимо для таких случаев, когда при сложении 2 чисел длинна суммы больше
+	//длины наибольшего числа.(Пример: 777 + 1 = 1000)
+	int tmp = 0;//переменная перехода в следующий разряд
 	for (int i = 0; i < max; i++)
 	{		
 		if (i < min)
@@ -143,87 +145,65 @@ Octal Octal::operator+(const Octal& _Octal)
 			}
 		}
 	}
+	//если после выполнения предыдущего цикла длина суммы больше длины наибольшего числа( пример:
+	//777 + 1 = 1000), необходимо самый старший разряд суммы сделать равным 1.
+	if (tmp == 1)
+	{
+		Sum.mass[Sum.length - 1] = 1;
+	}
+	else
+	{
+		Sum.length--;
+	}
 	return Sum;
 }
-//peregryzka "-"
+//перегрузка "-"
 Octal Octal::operator-(const Octal& _Octal)
 {
 	MaxIMinLength(length, _Octal.length);
 	Octal Raz(max);
-	int tmp = 0;
-	for (int i = 0; i < min; i++)
+	int tmp = 0;//переменная займа из разряда
+	for (int i = 0; i < max; i++)
 	{
-		if ((mass[i] + tmp) < _Octal.mass[i])
+		//mass[i] - _octal.mass[i] = delta
+		int delta;
+		if (i < length)//проверка на выход за пределы массива
 		{
-			Raz.mass[i] = mass[i] + 8 + tmp - _Octal.mass[i];
+			delta = mass[i];
+		}
+		else
+		{
+			delta = 0;
+		}
+		if (i < _Octal.length)//проверка на выход за пределы массива
+		{
+			delta = delta - _Octal.mass[i];
+		}
+
+		if (delta + tmp < 0)
+		{
+			Raz.mass[i] = 8 + delta + tmp;
 			tmp = -1;
 		}
 		else
 		{
-			Raz.mass[i] = mass[i] + tmp - _Octal.mass[i];
+			Raz.mass[i] = delta + tmp;
 			tmp = 0;
 		}
 	}
-	if (length != _Octal.length)
-	{
-		if (length > _Octal.length)
-		{
-			for (int i = _Octal.length; i < length; i++)
-			{
-				if (tmp == -1)
-				{
-					if (mass[i] == 0)
-					{
-						Raz.mass[i] = 7;
-					}
-					else
-					{
-						Raz.mass[i] = mass[i] + tmp;
-						tmp = 0;
-					}
-				}
-				else
-				{
-					Raz.mass[i] = mass[i];
-				}
-			}
-		}
-		else
-		{
-			for (int i = length; i < _Octal.length; i++)
-			{
-				if (tmp == -1)
-				{
-					if (_Octal.mass[i] == 0)
-					{
-						Raz.mass[i] = 7;
-					}
-					else
-					{
-						Raz.mass[i] = _Octal.mass[i] + tmp;
-						tmp = 0;
-					}
-				}
-				else
-				{
-					Raz.mass[i] = _Octal.mass[i];
-				}
-			}
-		}
-	}
-	if (Raz.mass[Raz.length - 1] == 0)
+	if (Raz.mass[Raz.length - 1] == 0)//удаление незначащих 0
 	{
 		Del0(Raz);
 	}
 	return Raz;
 }
-//peregryzka "*"
+//перегрузка "*"
 Octal Octal::operator*(const Octal& _Octal)
 {
 	Octal proizv(length + _Octal.length);
-	proizv.ToZero();
+	proizv.ToZero();//обнуление массива с результатом
 	int tmp = 2;
-	int t;
+	int t;//переменная перехода в следующий разряд
 	for (int i = 0; i < _Octal.length; i++)
 	{
 		for (int j = 0; j < length; j++)
@@ -256,6 +236,7 @@ Octal Octal::operator*(const Octal& _Octal)
 			tmp = 2;
 		}
 	}
+	//удаление незначащих нулей
 	if (proizv.mass[proizv.length - 1] == 0)
 	{
 		Del0(proizv);
@@ -263,7 +244,7 @@ Octal Octal::operator*(const Octal& _Octal)
 	return proizv;
 }
 
-//peregryzki sravnenii
+//перегрузка сравнений
 bool Octal::operator==(const Octal& _Octal)
 {
 	if (length == _Octal.length)
@@ -291,17 +272,14 @@ bool Octal::operator>(const Octal& _Octal)
 	{
 		return false;
 	}
-	for (int i = length - 1; i >= 0; i--)
+	for (int i = _Octal.length - 1; i >= 0; i--)
 	{
-		if (mass[i] <= _Octal.mass[i])
+		if (mass[i] < _Octal.mass[i])
 		{
 			return false;
 		}
-		else
-		{
-			return true;
-		}
 	}
+	return true;
 }
 
 bool Octal::operator<(const Octal& _Octal)
@@ -316,18 +294,15 @@ bool Octal::operator<(const Octal& _Octal)
 	}
 	for (int i = length - 1; i >= 0; i--)
 	{
-		if (mass[i] >= _Octal.mass[i])
+		if (mass[i] > _Octal.mass[i])
 		{
 			return false;
 		}
-		else
-		{
-			return true;
-		}
 	}
+	return true;
 }
 
-//peregryzka COUT
+//перегрузка COUT
 ostream& operator<<(ostream& stream, const Octal& _Octal)
 {
 	for (int i = _Octal.length - 1; i >=0; i--)
@@ -336,7 +311,7 @@ ostream& operator<<(ostream& stream, const Octal& _Octal)
 	}
 	return stream;
 }
-//peregryzka CIN
+//перегрузка CIN
 istream& operator>>(istream& stream, Octal& _Octal)
 {
 	string str;
