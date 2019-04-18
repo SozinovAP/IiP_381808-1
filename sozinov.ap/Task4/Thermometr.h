@@ -17,10 +17,6 @@ public:
 	~DataTemp();//деструктор
 
 
-	bool DataMatch(DataTemp _Data);//проверка совпадают ли даты и время
-	bool DataDayMatch(DataTemp _Data);//проверка совпадают ли дни
-	bool DataMonthMatch(DataTemp _Data);//проверка совпадают ли месяцы
-
 	friend ostream& operator<< (ostream& stream, const DataTemp& Date);//перегрукза COUT
 	friend istream& operator>> (istream& stream, DataTemp& Date);//перегузка CIN
 	friend class Thermometr;
@@ -39,7 +35,7 @@ public:
 	~Thermometr();
 
 	DataTemp GetStartData();//установка начальной даты
-	void Push_Observe(DataTemp _Observe);//добавление наблюдения
+	void Add_Observe(DataTemp _Observe);//добавление наблюдения
 	int GetTemp(DataTemp _Data);//получить температуру в выбранную дату
 	void SeriesOfObservations(DataTemp _Data);//выдать серию наблюдений по дате
 

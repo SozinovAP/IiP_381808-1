@@ -22,7 +22,7 @@ void main()
 	cout << "TEST\n Добавление наблюдения:\n Введите новое наблюдение" << endl;
 	DataTemp A;
 	cin >> A;
-	Ter.Push_Observe(A);
+	Ter.Add_Observe(A);
 	cout << "Проверка добавления" << endl;
 	cout << Ter;
 	cout << "TEST\n Узнать температуру по введенной дате" << endl;

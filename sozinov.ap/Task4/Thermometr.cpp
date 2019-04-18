@@ -26,29 +26,10 @@ DataTemp::~DataTemp()//деструктор
 	T = 0;
 };
 
-
-bool DataTemp::DataMatch(DataTemp _Data)//проверка совпадают ли даты и время
-{
-	return true;
-}
-
-bool DataTemp::DataDayMatch(DataTemp _Data)//проверка совпадают ли дни
-{
-	return true;
-
-}
-
-bool DataTemp::DataMonthMatch(DataTemp _Data)//проверка совпадают ли месяцы
-{
-	return true;
-
-}
-
-
 //перегрузка COUT
 ostream& operator<< (ostream& stream, const DataTemp& Date)
 {
-	stream << Date.day << " " << Date.mon << " " << Date.year << " " << Date.hou << " " << Date.T << endl;
+	stream << Date.day << " " << Date.mon << " " << Date.year << " " << Date.hou << " " << Date.T;
 	return stream;
 }
 //перегрузка CIN
@@ -84,7 +65,7 @@ DataTemp Thermometr::GetStartData()//установка начальной да�
 	return ArrayObserve[0];
 }
 
-void Thermometr::Push_Observe(DataTemp _Observe)//добавление наблюдения 
+void Thermometr::Add_Observe(DataTemp _Observe)//добавление наблюдения 
 {
 	if (size < MaxSize)
 	{
@@ -101,12 +82,8 @@ void Thermometr::Push_Observe(DataTemp _Observe)//добавление набл�
 		}
 		TmpArray[size] = _Observe;
 		delete[] ArrayObserve;
-		DataTemp* ArrayObserve = new DataTemp[MaxSize];
-		for (int i = 0; i < size; i++)
-		{
-			ArrayObserve[i] = TmpArray[i];
-		}
-		delete[] TmpArray;
+		ArrayObserve = TmpArray;
+		size++;
 	}
 }
 
