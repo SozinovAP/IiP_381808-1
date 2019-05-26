@@ -53,22 +53,18 @@ void ProcCenter::BlockedCard(int StatusBlock, int Card)//заблокроват�
 }
 ostream& operator << (ostream & stream, const ProcCenter &_P)
 {
-	stream.clear();
-	ifstream is;
-	is.open("C:/Users/alexs/Desktop/ИиПр!/IiP_381808 - 1/sozinov.ap/Task5/BaseClient.txt");
+	stream.clear();	
 	stream << _P.CountUser << " ";
 	for (int i = 0; i < _P.CountUser; i++)
 	{
 		stream << _P.NumCard[i] << " " << _P.family[i] << " " << _P.name[i] << " " << _P.patronymic[i]
 			<< " " << _P.SumUser[i] << " " << _P.PinUser[i] << " " << _P.BlockC[i] << " ";
 	}
-	is.close();
+
 	return stream;
 }
 istream& operator >> (istream & stream, ProcCenter &_P) 
 {
-	ifstream is;
-	is.open("C:/Users/alexs/Desktop/ИиПр!/IiP_381808 - 1/sozinov.ap/Task5/BaseClient.txt");
 	stream >> _P.CountUser;
 	int Count = _P.CountUser;
 	delete[] _P.NumCard;
@@ -92,6 +88,5 @@ istream& operator >> (istream & stream, ProcCenter &_P)
 		stream >> _P.NumCard[i] >> _P.family[i] >> _P.name[i] >> _P.patronymic[i]
 			>> _P.SumUser[i] >> _P.PinUser[i] >> _P.BlockC[i];
 	}
-	is.close();
 	return stream;
 }
