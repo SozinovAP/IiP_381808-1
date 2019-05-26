@@ -18,7 +18,7 @@ class ProcCenter
 	int *BlockC;
 
 public:
-	void SearchUser(int _NumCard, string &_family, string &_Name, string &_patr, int &_SumUs, int &_PinUs, int &_Block); //поиск клиента
+	void SearchUser(int _NumCard, string &_family, string &_Name, string &_patr, int &_SumUs, int &_PinUs, int &_Block, bool &_CheckClient); //поиск клиента
 	void ChangeUserInfo(int _SumUser, int Card); //изменение информации о счете
 	void BlockedCard(int StatusBlock, int Card);//заблокровать карту 
 

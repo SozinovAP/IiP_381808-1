@@ -6,7 +6,7 @@
 
 
 
-void ProcCenter::SearchUser(int _NumCard, string &_family, string &_Name, string &_patr, int &_SumUs, int &_PinUs, int &_Block)
+void ProcCenter::SearchUser(int _NumCard, string &_family, string &_Name, string &_patr, int &_SumUs, int &_PinUs, int &_Block, bool &_CheckClient)
 {
 	int i = 0;
 	bool user = false;
@@ -20,6 +20,7 @@ void ProcCenter::SearchUser(int _NumCard, string &_family, string &_Name, string
 			_SumUs = SumUser[i];
 			_PinUs = PinUser[i];
 			_Block = BlockC[i];
+			_CheckClient = true;
 			user = true;
 		}
 	}

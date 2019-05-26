@@ -10,6 +10,10 @@
 
 Bankomat::Bankomat()
 {
+	for (int i = 0; i < 5; i++)
+	{
+		CountBills[i] = Start;
+	}
 	ifstream is;
 	is.open("C:/Users/alexs/Desktop/ИиПр!/IiP_381808 - 1/sozinov.ap/Task5/BaseClient.txt");
 	is >> *User;
@@ -18,9 +22,10 @@ Bankomat::Bankomat()
 }
 bool Bankomat::CardOnBank(int NumCard) //получить карту
 {
+	bool CheckClient = false; //проверка наличия клиента 
 	UserActive.NumCard = NumCard;
-	User->SearchUser(UserActive.NumCard, UserActive.family, UserActive.name, UserActive.patronymic, UserActive.SumUser, UserActive.PinUser, UserActive.BlockC);
-	if (UserActive.NumCard != 0)
+	User->SearchUser(UserActive.NumCard, UserActive.family, UserActive.name, UserActive.patronymic, UserActive.SumUser, UserActive.PinUser, UserActive.BlockC, CheckClient);
+	if (CheckClient)
 	{
 		return true;
 	}
@@ -176,4 +181,5 @@ void Bankomat::ReturnCard() //вернуть карту
 {
 	User->ChangeUserInfo(UserActive.SumUser, UserActive.NumCard);
 	UserActive = { 0, "", "", "", 0, 0, 0 };
+	Wrong = 3;
 }
