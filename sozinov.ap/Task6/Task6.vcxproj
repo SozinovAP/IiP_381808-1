@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shake.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="shake.cpp" />
+    <ClCompile Include="TesT.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9AD73958-77B3-4B84-BAD8-F4CFD8791CBB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
